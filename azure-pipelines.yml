@@ -26,6 +26,7 @@ steps:
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
+- script: ls
 - script: docker login -u $(dockerId) -p $(dockerPassword)
 - script: docker build -t $(dockerId)/$(imageName):$(Build.BuildNumber) .
 - script: docker push $(dockerId)/$(imageName):$(Build.BuildNumber)
