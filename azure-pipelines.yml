@@ -28,5 +28,5 @@ steps:
 
 - script: ls
 - script: docker login -u $(dockerId) -p $(dockerPassword)
-- script: docker build -t $(dockerId)/$(imageName):$(Build.BuildNumber) .
+- script: docker build -t $(dockerId)/$(imageName):$(Build.BuildNumber) -f WebApiCore/Dockerfile WebApiCore
 - script: docker push $(dockerId)/$(imageName):$(Build.BuildNumber)
