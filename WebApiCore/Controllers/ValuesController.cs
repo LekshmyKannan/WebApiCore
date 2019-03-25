@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using WebApiCore.Models;
 
 namespace WebApiCore.Controllers
 {
@@ -10,11 +9,24 @@ namespace WebApiCore.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IOptions<MySettings> _settings;
+
+        public ValuesController(IOptions<MySettings> settings)
+        {
+            _settings = settings;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2", "value3" };
+        }
+
+        // GET api/values/config
+        [HttpGet("settings")]
+        public ActionResult<string> GetFromSettings()
+        {
+            return _settings.Value.StaticValue;
         }
 
         // GET api/values/5

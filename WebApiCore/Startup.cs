@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebApiCore.Models;
 
 namespace WebApiCore
 {
@@ -26,6 +27,7 @@ namespace WebApiCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.Configure<MySettings>(Configuration.GetSection("MySettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
