@@ -28,4 +28,5 @@ steps:
 
 -script: |
   docker login -u $(dockerId) -p $(dockerPassword)
-  docker build -t $(dockerId)/$(imageName):$(buildConfiguration.)
+  docker build -t $(dockerId)/$(imageName):$(Build.BuildNumber)
+  docker push $(dockerId)/$(imageName):$(Build.BuildNumber)
